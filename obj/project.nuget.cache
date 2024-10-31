@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "FwSXPzHzIqLXy0O+vERigBMjnklz5We0hq0v+tnzyX1ghG606IbaT7Fp1vPq9vHcLiLkNANoo8YET9a747WD3g==",
+  "success": true,
+  "projectFilePath": "/home/aleks/Projects/TcpHttp/TcpHttp.csproj",
+  "expectedPackageFiles": [
+    "/home/aleks/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.8/microsoft.aspnetcore.app.ref.8.0.8.nupkg.sha512"
+  ],
+  "logs": []
+}

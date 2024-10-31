@@ -1,0 +1,15 @@
+/home/aleks/Projects/TcpHttp/bin/Debug/net8.0/TcpHttp
+/home/aleks/Projects/TcpHttp/bin/Debug/net8.0/TcpHttp.deps.json
+/home/aleks/Projects/TcpHttp/bin/Debug/net8.0/TcpHttp.runtimeconfig.json
+/home/aleks/Projects/TcpHttp/bin/Debug/net8.0/TcpHttp.dll
+/home/aleks/Projects/TcpHttp/bin/Debug/net8.0/TcpHttp.pdb
+/home/aleks/Projects/TcpHttp/obj/Debug/net8.0/TcpHttp.GeneratedMSBuildEditorConfig.editorconfig
+/home/aleks/Projects/TcpHttp/obj/Debug/net8.0/TcpHttp.AssemblyInfoInputs.cache
+/home/aleks/Projects/TcpHttp/obj/Debug/net8.0/TcpHttp.AssemblyInfo.cs
+/home/aleks/Projects/TcpHttp/obj/Debug/net8.0/TcpHttp.csproj.CoreCompileInputs.cache
+/home/aleks/Projects/TcpHttp/obj/Debug/net8.0/TcpHttp.sourcelink.json
+/home/aleks/Projects/TcpHttp/obj/Debug/net8.0/TcpHttp.dll
+/home/aleks/Projects/TcpHttp/obj/Debug/net8.0/refint/TcpHttp.dll
+/home/aleks/Projects/TcpHttp/obj/Debug/net8.0/TcpHttp.pdb
+/home/aleks/Projects/TcpHttp/obj/Debug/net8.0/TcpHttp.genruntimeconfig.cache
+/home/aleks/Projects/TcpHttp/obj/Debug/net8.0/ref/TcpHttp.dll
