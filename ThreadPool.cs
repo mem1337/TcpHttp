@@ -4,30 +4,36 @@ using System.Text;
 
 namespace TcpHttp;
 
-class TcpServer
+class TcpServer2
 {
+    public static IPAddress Address = IPAddress.Parse("127.0.0.1");
+    public static Int32 Port = 8080;
+    public static TcpListener Server = new TcpListener(Address,Port);
+    public static TcpClient Client;
+
     public static void StartTcpServer()
     {
-        IPAddress address = IPAddress.Parse("127.0.0.1");
-        Int32 port = 8080;
-        TcpListener server = new TcpListener(address, port);
-        server.Start();
-
+        Server.Start();
         Console.WriteLine("--- Waiting for the client ----");
+
         while(true)
         {
-            TcpClient client = server.AcceptTcpClient();
-            var childThread = new Thread(() =>
-            {
-                var strem = client.GetStream();
-                byte[] read = new byte[900];
-                strem.Read(read, 0, read.Length);
-                Console.WriteLine(Encoding.UTF8.GetString(read));
-                strem.Write(sendResponseOk(),0,sendResponseOk().Length);
-            });
-            childThread.Start();
+            Client = Server.AcceptTcpClient();
+            ThreadPool.QueueUserWorkItem(childThread);
+            Thread.Sleep(100);
+            Console.WriteLine(ThreadPool.ThreadCount);
         }
     }
+    static void childThread(Object stateInfo)
+    {
+        // No state object was passed to QueueUserWorkItem, so stateInfo is null.
+        var strem = Client.GetStream();
+        byte[] read = new byte[900];
+        strem.Read(read, 0, read.Length);
+        Console.WriteLine(Encoding.UTF8.GetString(read));
+        strem.Write(sendResponseOk(),0,sendResponseOk().Length);
+    }
+
     public static byte[] sendResponseOk()
     {
         // html
