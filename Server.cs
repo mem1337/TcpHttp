@@ -1,21 +1,22 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+
 namespace TcpHttp;
 
 class TcpServer
 {
     public static void StartTcpServer()
     {
-        IPAddress Address = IPAddress.Parse("127.0.0.1");
-        Int32 Port = 8080;
-        TcpListener Server = new TcpListener(Address, Port);
-        Server.Start();
+        IPAddress address = IPAddress.Parse("127.0.0.1");
+        Int32 port = 8080;
+        TcpListener server = new TcpListener(address, port);
+        server.Start();
 
         Console.WriteLine("--- Waiting for the client ----");
         while(true)
         {
-            TcpClient client = Server.AcceptTcpClient();
+            TcpClient client = server.AcceptTcpClient();
             var childThread = new Thread(() =>
             {
                 var strem = client.GetStream();
@@ -26,17 +27,22 @@ class TcpServer
             });
             childThread.Start();
         }
-
-
-
     }
     public static byte[] sendResponseOk()
     {
         // html
         string htmlResponse = "<html>";
-        htmlResponse += "<head><title>FAHRI</title></head>";
-        htmlResponse += "<body><h1>FAHRI</h1></body>";
-        htmlResponse += "</html>";
+
+        using (StreamReader sr = new StreamReader("index.html"))
+        {
+            string line;
+            // Read and display lines from the file until the end of
+            // the file is reached.
+            while ((line = sr.ReadLine()) != null)
+            {
+                htmlResponse+=line;
+            }
+        }
 
         // response header
         string response = "HTTP/1.1 200 OK\r\n";
