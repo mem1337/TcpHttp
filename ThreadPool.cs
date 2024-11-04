@@ -1,6 +1,5 @@
 using System.Net;
 using System.Net.Sockets;
-using System.Reflection;
 using System.Text;
 
 namespace TcpHttp;
@@ -16,7 +15,6 @@ class TcpServer2
     {
         Server.Start();
         Console.WriteLine("--- Waiting for the client ----");
-
         while(true)
         {
             Client = Server.AcceptTcpClient();
@@ -33,7 +31,6 @@ class TcpServer2
         strem.Write(SendResponseOk(),0,SendResponseOk().Length);
         Client.Close();
     }
-
     public static byte[] SendResponseOk()
     {
         // html
@@ -49,7 +46,6 @@ class TcpServer2
                 htmlResponse+=line;
             }
         }
-
         // response header
         string response = "HTTP/1.1 200 OK\r\n";
         response += "Content-type: text/html; charset=utf-8\r\n";
