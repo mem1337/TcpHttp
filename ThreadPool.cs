@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 
 namespace TcpHttp;
@@ -8,7 +9,7 @@ class TcpServer2
 {
     public static IPAddress Address = IPAddress.Parse("127.0.0.1");
     public static Int32 Port = 8080;
-    public static TcpListener Server = new TcpListener(Address,Port);
+    public static TcpListener Server = new(Address,Port);
     public static TcpClient Client;
 
     public static void StartTcpServer()
@@ -19,22 +20,21 @@ class TcpServer2
         while(true)
         {
             Client = Server.AcceptTcpClient();
-            ThreadPool.QueueUserWorkItem(childThread);
-            Thread.Sleep(100);
-            Console.WriteLine(ThreadPool.ThreadCount);
+            ThreadPool.QueueUserWorkItem(ChildThread, null);
+            Thread.Sleep(1000);
         }
     }
-    static void childThread(Object stateInfo)
+    static void ChildThread(object? state)
     {
-        // No state object was passed to QueueUserWorkItem, so stateInfo is null.
         var strem = Client.GetStream();
-        byte[] read = new byte[900];
+        byte[] read = new byte[1024];
         strem.Read(read, 0, read.Length);
         Console.WriteLine(Encoding.UTF8.GetString(read));
-        strem.Write(sendResponseOk(),0,sendResponseOk().Length);
+        strem.Write(SendResponseOk(),0,SendResponseOk().Length);
+        Client.Close();
     }
 
-    public static byte[] sendResponseOk()
+    public static byte[] SendResponseOk()
     {
         // html
         string htmlResponse = "";
